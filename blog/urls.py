@@ -17,14 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from posts.views import about,hello_world,me,post
-from posts.views import category_list
+from posts.views import (about,hello_world,me,get_posts,
+get_post,create_post,create_category
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',hello_world, name ='home'),
-    path('about/',about, name ='about'),
-    path('test/',me, name = 'test'),
-    path('posts/',post, name ='posts'),
-    path('', category_list),
-    path('categories/', category_list),
+    path('', hello_world, name='home'),
+    path('about/', about, name='about'),
+    path('test/', me, name='test'),
+    path('posts/', get_posts, name='posts'),
+    path('post/<int:pk>/detail/',get_post,name='post_detail'),
+    path('post/create/',create_post,name='post_create'),
+    path('category/create/',create_category,name='category_create'),
 ]
